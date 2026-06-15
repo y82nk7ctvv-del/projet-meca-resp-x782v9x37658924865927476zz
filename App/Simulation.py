@@ -9,7 +9,7 @@ from scipy.stats import mannwhitneyu
 # 1. IMPORTATION ET NETTOYAGE DES DONNÉES
 @st.cache_data
 def charger_donnees():
-    df = pd.read_excel("donnees_patients.xlsx", sheet_name="Results") 
+    df = pd.read_excel("App/donnees_patients.xlsx", sheet_name="Results") 
     
     # NETTOYAGE EXTRÊME : On enlève les espaces invisibles au début et à la fin
     df.columns = df.columns.str.strip()
