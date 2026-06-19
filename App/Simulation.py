@@ -107,43 +107,7 @@ try:
     # 4. MISE EN ÉVIDENCE DU TAUX DE COMPLICATION AVEC INCERTITUDE
     st.info(f"L'instabilité hémodynamique a été observée chez {p_instable*100:.0f} ± {ic_95*100:.0f} % des patients, avec un intervalle de 95% de confiance. Dans le groupe instable nous trouvons des patients légérement plus vieux (7%) et en obésité (IMC>30) par rapport au groupe stable. La proportion homme/femme est sensiblement la même (±1). ")
 
-    # 5. MENU DÉROULANT : DÉTAILS DES CALCULS STATISTIQUES
-    # 5. MENU DÉROULANT : DÉTAILS DES CALCULS STATISTIQUES
-    with st.expander("Voir les détails des calculs statistiques"):
-        st.markdown("""
-        ### 1. Définition de l'échantillon expérimental
-        En analyse statistique expérimentale, nos patients constituent un **échantillon $E$** extrait d'une **population globale $P$** (l'ensemble théorique des patients en chirurgie abdominale). 
-        Le taux de complication observé expérimentalement ($p$) est une estimation de la probabilité réelle au sein de cette population globale.
-        """)
-        
-        # Affichage dynamique des valeurs du script
-        st.markdown(f"""
-        * **Taille de l'échantillon ($N_{{total}}$)** = {n_total} patients
-        * **Événements observés ($N_{{instable}}$)** = {n_instable} patients
-        * **Estimation de la proportion ($p$)** = {p_instable:.2f} (soit {p_instable*100:.0f} %)
-        """)
 
-        st.markdown("""
-        ### 2. Incertitude d'estimation et Intervalle de Confiance ($IC_{95}$)
-        Tout comme l'incertitude sur la modélisation d'une droite de régression dépend de la dispersion des points et de la taille de l'échantillon, l'incertitude sur notre proportion $p$ dépend de la variance de sa loi de probabilité.
-        
-        Pour un échantillon suffisamment grand, cette distribution converge vers une loi Normale (qui est la limite de la loi de Student lorsque le nombre de degrés de liberté $v$ est grand). 
-        Pour encadrer la valeur "vraie" avec un niveau de confiance de 95%, nous appliquons un facteur d'élargissement $k = 1.96$ à l'écart-type de cette proportion.
-        """)
-        
-
-        
-        # Affichage de la belle formule mathématique
-        st.latex(r"IC_{95} = 1.96 \times \sqrt{\frac{p(1-p)}{N_{total}}}")
-        
-        st.markdown(f"""
-        **Application numérique :**
-        * $1.96 \\times \\sqrt{{ \\frac{{{p_instable:.2f} \\times (1 - {p_instable:.2f})}}{{{n_total}}} }}$ 
-        * **Incertitude élargie = $\\pm$ {ic_95*100:.0f} %**
-        
-        **Conclusion :** Nous pouvons affirmer avec 95% de certitude que le taux de complication réel de la population $P$ se situe dans l'intervalle $[{p_instable*100 - ic_95*100:.0f}  ; {p_instable*100 + ic_95*100:.0f} ]$.
-        """)
-    
     # Noms EXACTS des colonnes (nettoyés des espaces)
     col_x = "Ecart-type de dP (Vt= 7ml/kg)"
     col_y = "Mechanical Pow dyna mini  (Vt= 7ml/kg) en J/min"
